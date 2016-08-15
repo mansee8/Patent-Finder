@@ -1,0 +1,36 @@
+# Patent Finder Documentation 
+
+The *Patent-Finder* project comprises of two packages:
+- omni.sc.model   : classes consisting of main problem solution 
+- omni.sc.mapping : jackson classes used for mapping results from PAIR Bulk Data API
+
+## omni.sc.model
+
+The package contains four classes:
+- Main.java 
+  * The "main" class used to execute the code. Calls the Mapper class to retrieve the output and print to json file.
+- Patent.java  
+  * Containing getters and setters required for mapping Patent (id, status, title list of investors and filing date).
+- Query.java 
+  * Formation of query and retrieving the results by issuing a query against the underlying Solr search engine using API url. 
+  * Mapping the retrieved query results against defined classes in omni.sc.mapping, under which getters and setters for each subsection of JSON data are defined.
+- Mapper.java
+  * Imports the jackson package, required for conversion of object to string format (necessary for output)
+  * Step-wise execution
+    1. Construct the query using Query class by passing parameter start. (start resembles the starting doc number, starting from which 20 docs are fetched continuously).
+	2. Retrieve query results.
+	3. ObjectMapper object (Jackson package) maps the retrieved Json result of query to the **omni.sc.mapping** classes.
+	4. Once the results are mapped to jackson classes, individual identifiers like **id, patent title, list of investors, status and filing date** are combined to form the patent object. 
+	5. The patent object is converted to json and the written to output. 
+	6. Repeat steps a.-e. until all docs are processed/retrieved. 
+
+## omni.sc.mapping
+
+The package contains jackson classes to map results from the API.
+
+## Resuability 
+
+- Separate queries can be created within the Query.java to access different endpoints the API.
+- The mapping of the API results is flexible enough to map to different format results. 
+
+
