@@ -1,6 +1,6 @@
 # Patent Finder Documentation 
 
-The *Patent-Finder* project comprises of two packages:
+The project is used to retrieve patents filed in the previous year using PAIR Bulk Data API and parse the output. The *Patent-Finder* project comprises of two packages:
 - omni.sc.model   : classes consisting of main problem solution 
 - omni.sc.mapping : jackson classes used for mapping results from PAIR Bulk Data API
 
